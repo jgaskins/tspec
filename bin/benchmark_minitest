@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'minitest/spec'
+require 'minitest/autorun'
+
+100.times do
+  describe 'Minitest' do
+    10.times do
+      it 'runs a test' do
+        1.must_equal 1
+      end
+    end
+  end
+end

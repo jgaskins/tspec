@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+$:.unshift 'lib', 'spec'
+require 'tspec'
+require 'optparse'
+
+def load_specs files
+  files.each do |file|
+    if File.file?(file)
+      require "./#{file}"
+    elsif File.directory?(file)
+      Dir["./#{file}/**/*_spec.rb"].each(&method(:require))
+    end
+  end
+end
+
+tspec_options = OptionParser.new do |options|
+  options.on '-j', '--threads THREADS', 'Specify level of concurrency' do |count|
+    puts "Running specs in #{count} threads"
+    ENV['TSPEC_THREADS'] = count
+  end
+end
+
+tspec_options.parse! ARGV
+
+if ARGV.none?
+  puts 'No files specified. Defaulting to spec directory.'
+  ARGV << 'spec'
+end
+
+load_specs ARGV

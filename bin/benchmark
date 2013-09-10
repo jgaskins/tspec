@@ -1,0 +1,5 @@
+#!/bin/sh
+
+time bin/benchmark_tspec -j8
+time bin/benchmark_rspec
+time bin/benchmark_minitest

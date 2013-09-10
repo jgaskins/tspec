@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby -Ilib -rtspec
+
+class Fibonacci
+  def [] index
+    return index if index == 0 or index == 1
+
+    self[index - 1] + self[index - 2]
+  end
+end
+
+20.times do
+  describe 'hardcore specs' do
+    10.times do
+      it 'runs a CPU-intensive operation' do
+        fib = Fibonacci.new
+        fib[20]
+      end
+
+      it 'performs blocking operations' do
+        sleep 0.05
+      end
+    end
+  end
+end

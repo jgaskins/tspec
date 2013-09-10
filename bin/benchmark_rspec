@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'rspec/autorun'
+
+100.times do
+  describe 'RSpec' do
+    10.times do
+      it 'runs a test' do
+        expect(1).to eq 1
+      end
+    end
+  end
+end
